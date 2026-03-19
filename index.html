@@ -88,8 +88,14 @@
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 1024px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .cards { grid-template-columns: 1fr; }
     }
 
     .card {
@@ -133,6 +139,31 @@
     }
     .card-icon.blue { background: #eef2ff; }
     .card-icon.navy { background: #e8edf7; }
+    .card-icon.green { background: #ecfdf5; }
+    .card-icon.orange { background: #fff7ed; }
+
+    .card--coming-soon {
+      opacity: 0.75;
+      cursor: default;
+      pointer-events: none;
+    }
+    .card--coming-soon:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: #e2e5ea;
+    }
+    .card--coming-soon::before { display: none; }
+    .soon-badge {
+      display: inline-block;
+      background: #f1f5f9;
+      color: #94a3b8;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
 
     .card-tag {
       font-size: 0.7rem;
@@ -228,6 +259,26 @@
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="#2a4db5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
+        </div>
+      </a>
+
+      <a class="card card--coming-soon" href="#" target="_blank" onclick="return false;">
+        <div class="card-icon green">📊</div>
+        <div class="card-tag">Tracking &amp; Milestones</div>
+        <h2>Progress Tracker</h2>
+        <p>Monitor real-time progress across key initiatives, milestones, and team deliverables for the Proximity Foundation.</p>
+        <div class="card-cta card-cta--soon">
+          <span class="soon-badge">Coming Soon</span>
+        </div>
+      </a>
+
+      <a class="card card--coming-soon" href="#" target="_blank" onclick="return false;">
+        <div class="card-icon orange">💰</div>
+        <div class="card-tag">Finance &amp; Budget</div>
+        <h2>Financial Reporting</h2>
+        <p>Access financial summaries, budget allocations, and expenditure reports across all Foundation programmes and departments.</p>
+        <div class="card-cta card-cta--soon">
+          <span class="soon-badge">Coming Soon</span>
         </div>
       </a>
 
