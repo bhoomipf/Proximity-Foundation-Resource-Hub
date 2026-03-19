@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proximity Foundation — 6-Month Director Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0e0e;
+  --paper: #f5f0e8;
+  --accent: #c84b2f;
+  --accent2: #2563a8;
+  --gold: #d4a94a;
+  --green: #2d7a4f;
+  --muted: #6b6355;
+  --card: #ffffff;
+  --border: #d4cfc6;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Outfit',sans-serif; background:var(--paper); color:var(--ink); min-height:100vh; }
+
+/* HEADER */
+.header {
+  background:var(--ink); color:var(--paper);
+  padding:48px 60px 40px; position:relative; overflow:hidden;
+}
+.header::before {
+  content:''; position:absolute; top:-80px; right:-80px;
+  width:320px; height:320px; border-radius:50%;
+  border:60px solid rgba(200,75,47,0.13);
+}
+.header-label {
+  font-family:'DM Mono',monospace; font-size:11px;
+  letter-spacing:3px; color:var(--accent); text-transform:uppercase; margin-bottom:12px;
+}
+.header h1 {
+  font-family:'Fraunces',serif; font-size:clamp(32px,5vw,56px);
+  font-weight:900; line-height:1.05; margin-bottom:16px;
+}
+.header h1 span { color:var(--accent); }
+.header-sub {
+  font-size:15px; color:rgba(245,240,232,0.65);
+  max-width:580px; line-height:1.6; margin-bottom:28px;
+}
+.header-meta { display:flex; gap:32px; flex-wrap:wrap; }
+.meta-pill {
+  display:flex; align-items:center; gap:8px;
+  font-family:'DM Mono',monospace; font-size:12px; color:rgba(245,240,232,0.7);
+}
+.meta-pill .dot { width:8px; height:8px; border-radius:50%; background:var(--accent); }
+
+/* NAV */
+.nav-bar {
+  background:var(--card); border-bottom:2px solid var(--border);
+  padding:0 60px; display:flex; gap:0; overflow-x:auto;
+  position:sticky; top:0; z-index:100;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);
+}
+.nav-tab {
+  padding:16px 22px; font-size:13px; font-weight:600;
+  color:var(--muted); cursor:pointer; border-bottom:3px solid transparent;
+  margin-bottom:-2px; white-space:nowrap; transition:all 0.2s; letter-spacing:0.3px;
+}
+.nav-tab:hover { color:var(--ink); }
+.nav-tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+
+/* MAIN */
+.main { padding:48px 60px; max-width:1300px; }
+.section { display:none; animation:fadeUp 0.4s ease; }
+.section.active { display:block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+.section-title { font-family:'Fraunces',serif; font-size:32px; font-weight:700; margin-bottom:8px; }
+.section-desc { color:var(--muted); font-size:14px; margin-bottom:36px; max-width:680px; line-height:1.6; }
+
+/* STAT CARDS */
+.overview-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:40px; }
+@media(max-width:900px){.overview-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.overview-grid{grid-template-columns:1fr}}
+.stat-card {
+  background:var(--card); border:1.5px solid var(--border);
+  border-radius:14px; padding:22px 22px 18px; position:relative; overflow:hidden;
+}
+.stat-card::before { content:''; position:absolute; top:0;left:0;right:0; height:4px; background:var(--accent); }
+.stat-card.blue::before{background:var(--accent2)}.stat-card.green::before{background:var(--green)}.stat-card.gold::before{background:var(--gold)}
+.stat-card.purple::before{background:#7030a0}
+.stat-num { font-family:'Fraunces',serif; font-size:28px; font-weight:900; line-height:1; margin-bottom:2px; color:var(--ink); }
+.stat-month { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; margin-bottom:10px; }
+.stat-headline { font-size:13px; font-weight:700; color:var(--ink); margin-bottom:8px; line-height:1.3; }
+.stat-targets { list-style:none; padding:0; margin:0; border-top:1px solid var(--border); padding-top:8px; display:flex; flex-direction:column; gap:4px; }
+.stat-targets li { font-size:11.5px; color:var(--muted); display:flex; gap:6px; align-items:flex-start; line-height:1.4; }
+.stat-targets li::before { content:'→'; color:var(--accent); flex-shrink:0; font-size:10px; margin-top:1px; }
+.stat-card.blue .stat-targets li::before{color:var(--accent2)}
+.stat-card.green .stat-targets li::before{color:var(--green)}
+.stat-card.gold .stat-targets li::before{color:var(--gold)}
+.stat-card.purple .stat-targets li::before{color:#7030a0}
+
+/* FOCUS ROW */
+.focus-row { display:grid; grid-template-columns:1fr; gap:20px; margin-bottom:40px; max-width:520px; }
+.focus-card { background:var(--card); border:1.5px solid var(--border); border-radius:12px; padding:28px; }
+.focus-card h3 { font-family:'Fraunces',serif; font-size:18px; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+.focus-icon { width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;background:#f0ebe0; }
+.pct-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.pct-label { font-size:13px; color:var(--muted); width:160px; flex-shrink:0; }
+.pct-bar-bg { flex:1; height:8px; background:#ede8df; border-radius:4px; overflow:hidden; }
+.pct-bar-fill { height:100%; border-radius:4px; background:var(--accent); }
+.pct-bar-fill.blue{background:var(--accent2)}
+.pct-val { font-family:'DM Mono',monospace; font-size:12px; font-weight:500; width:36px; text-align:right; }
+
+/* MONTH CARDS */
+.month-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:14px; margin-bottom:20px; }
+.month-card {
+  background:var(--card); border:1.5px solid var(--border);
+  border-radius:12px; overflow:hidden; cursor:pointer;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.month-card:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,0.1); }
+.month-card.selected { border-color:var(--accent); box-shadow:0 0 0 3px rgba(200,75,47,0.1); }
+.month-header { background:var(--ink); color:var(--paper); padding:14px 16px; }
+.month-header .month-num { font-family:'DM Mono',monospace; font-size:10px; color:var(--accent); letter-spacing:2px; margin-bottom:3px; }
+.month-header .month-title { font-family:'Fraunces',serif; font-size:14px; font-weight:700; }
+.month-header .month-theme { font-size:10px; color:rgba(245,240,232,0.5); margin-top:3px; font-style:italic; }
+.month-tags { padding:10px 14px; display:flex; flex-direction:column; gap:5px; }
+.tag { font-size:9px; font-weight:700; padding:3px 8px; border-radius:20px; display:inline-block; letter-spacing:0.3px; }
+.tag.red{background:#fde8e4;color:var(--accent)}
+.tag.blue{background:#e4eef8;color:var(--accent2)}
+.tag.green{background:#e2f4eb;color:var(--green)}
+.tag.gold{background:#fdf3df;color:#a07830}
+.tag.purple{background:#f0e8f8;color:#7030a0}
+.month-tasks { padding:8px 14px 10px; border-top:1px solid #ede8df; }
+.month-tasks .task-item { font-size:9.5px; color:#3a3530; padding:2px 0; border-bottom:1px solid #ede8df; line-height:1.4; }
+.month-tasks .task-item:last-child { border-bottom:none; }
+.month-exception { margin:6px 14px 10px; font-size:9px; font-weight:700; color:var(--accent); background:#fde8e4; border-radius:4px; padding:4px 7px; line-height:1.4; }
+
+/* MONTH DETAIL */
+.month-detail {
+  display:none; background:var(--card); border:1.5px solid var(--accent);
+  border-radius:16px; padding:36px; margin-top:20px;
+  animation:fadeUp 0.3s ease;
+}
+.month-detail.visible{display:block}
+.detail-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; flex-wrap:wrap; gap:16px; }
+.detail-header h2 { font-family:'Fraunces',serif; font-size:26px; font-weight:700; }
+.detail-header .theme-pill { background:var(--accent); color:white; font-size:12px; font-weight:700; padding:6px 16px; border-radius:20px; }
+.detail-capacity-note {
+  background:#fdf6e3; border:1.5px solid #e8d48a; border-radius:8px;
+  padding:10px 16px; margin-bottom:22px;
+  font-size:12.5px; color:#7a5800; line-height:1.5;
+}
+.pillars-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+.pillar-block { border:1.5px solid var(--border); border-radius:10px; overflow:hidden; }
+.pillar-head { padding:10px 16px; font-size:10px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; display:flex; align-items:center; gap:8px; }
+.pillar-head.red{background:#fde8e4;color:var(--accent)}
+.pillar-head.blue{background:#e4eef8;color:var(--accent2)}
+.pillar-head.green{background:#e2f4eb;color:var(--green)}
+.pillar-head.gold{background:#fdf3df;color:#a07830}
+.pillar-head.purple{background:#f0e8f8;color:#7030a0}
+.pillar-body { padding:14px 16px; background:#fdfbf8; }
+.pillar-body ul { padding-left:16px; }
+.pillar-body li { font-size:13px; line-height:1.65; color:#2a2520; margin-bottom:3px; }
+.pillar-body .kpi { margin-top:10px; padding-top:10px; border-top:1px dashed var(--border); font-family:'DM Mono',monospace; font-size:11px; color:var(--muted); }
+.unlock-note { margin-top:8px; padding:7px 10px; background:#e2f4eb; border-radius:6px; font-size:11px; color:var(--green); font-weight:600; }
+
+/* PILLARS PAGE */
+.pillars-overview { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin-bottom:40px; }
+.pillar-card { background:var(--card); border:1.5px solid var(--border); border-radius:14px; padding:28px; transition:box-shadow 0.2s; }
+.pillar-card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.08); }
+.pillar-emoji { font-size:28px; margin-bottom:12px; }
+.pillar-card h3 { font-family:'Fraunces',serif; font-size:18px; font-weight:700; margin-bottom:8px; }
+.pillar-card p { font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:16px; }
+.pillar-items li { font-size:13px; line-height:1.7; color:#2a2520; padding-left:16px; position:relative; }
+.pillar-items li::before { content:'→'; position:absolute; left:0; color:var(--accent); font-size:11px; }
+
+/* ORG */
+.org-container { background:var(--card); border:1.5px solid var(--border); border-radius:14px; padding:40px; text-align:center; margin-bottom:32px; overflow-x:auto; }
+.org-level { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+.vline { width:2px; height:32px; background:var(--border); margin:0 auto; }
+.onode { border-radius:10px; padding:14px 20px; font-size:13px; font-weight:600; min-width:145px; display:inline-block; text-align:center; }
+.onode .osub { font-family:'DM Mono',monospace; font-size:9px; margin-top:3px; font-weight:400; letter-spacing:0.3px; }
+.onode.ceo{background:var(--ink);color:var(--paper);font-size:15px;min-width:200px}
+.onode.ceo .osub{color:rgba(245,240,232,0.5)}
+.onode.dir{background:#1e3a5f;color:#fff;font-size:14px;min-width:200px}
+.onode.dir .osub{color:rgba(200,220,255,0.8)}
+.onode.vol{background:var(--green);color:#fff;font-size:11.5px}
+.onode.vol .osub{color:rgba(255,255,255,0.65)}
+.onode.hire1{background:#fde8e4;color:var(--accent);border:2px solid var(--accent)}
+.onode.hire2{background:#fdf3df;color:#a07830;border:2px dashed #d4a94a}
+.onode.hire3{background:#f0e8f8;color:#7030a0;border:2px dashed #b090d0;font-style:italic}
+.hbadge { font-family:'DM Mono',monospace; font-size:9px; padding:2px 7px; border-radius:10px; margin-bottom:4px; display:inline-block; }
+.hbadge.p1{background:var(--accent);color:#fff}
+.hbadge.p2{background:var(--gold);color:#fff}
+.hbadge.p3{background:#b090d0;color:#fff}
+.hbadge.done{background:var(--green);color:#fff}
+.dept-col { display:flex; flex-direction:column; align-items:center; gap:8px; padding:0 10px; }
+.dept-label { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:1.5px; color:var(--muted); text-transform:uppercase; margin-bottom:6px; }
+
+/* HIRE TABLE */
+.hire-table { width:100%; border-collapse:collapse; background:var(--card); border-radius:12px; overflow:hidden; border:1.5px solid var(--border); margin-bottom:28px; }
+.hire-table th { background:var(--ink); color:var(--paper); padding:13px 18px; text-align:left; font-size:11px; letter-spacing:1px; text-transform:uppercase; }
+.hire-table td { padding:12px 18px; font-size:13px; border-bottom:1px solid var(--border); vertical-align:middle; }
+.hire-table tr:last-child td{border-bottom:none}
+.hire-table tr:hover td{background:#faf8f4}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700}
+.badge.p1{background:#fde8e4;color:var(--accent)}
+.badge.p2{background:#fdf3df;color:#a07830}
+.badge.p3{background:#f0e8f8;color:#7030a0}
+.badge.done{background:#e2f4eb;color:var(--green)}
+
+/* DONOR */
+.donor-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:32px; }
+.donor-card { background:var(--card); border:1.5px solid var(--border); border-radius:12px; padding:28px; }
+.donor-card h3 { font-family:'Fraunces',serif; font-size:17px; margin-bottom:14px; }
+.tl-item { display:flex; gap:12px; align-items:flex-start; margin-bottom:10px; }
+.tl-dot { width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:9px;font-weight:700;color:#fff;background:var(--accent); }
+.tl-dot.b{background:var(--accent2)}.tl-dot.g{background:var(--green)}.tl-dot.a{background:var(--gold)}
+.tl-text{font-size:13px;line-height:1.55;padding-top:4px}
+
+/* LMS */
+.lms-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+.lcard{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:28px}
+.lcard h3{font-family:'Fraunces',serif;font-size:17px;margin-bottom:14px}
+
+/* KPI TABLE */
+.kpi-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;border:1.5px solid var(--border);margin-bottom:28px}
+.kpi-table th{background:var(--ink);color:var(--paper);padding:13px 18px;text-align:left;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.kpi-table td{padding:12px 18px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle}
+.kpi-table tr:last-child td{border-bottom:none}
+.kpi-table tr:hover td{background:#faf8f4}
+
+footer{background:var(--ink);color:rgba(245,240,232,0.4);text-align:center;padding:22px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;margin-top:60px}
+footer span{color:var(--accent)}
+
+@media(max-width:768px){
+  .header,.main{padding:32px 24px}
+  .nav-bar{padding:0 16px}
+  .month-grid{grid-template-columns:repeat(3,1fr)}
+  .focus-row,.donor-grid,.lms-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-label">● Director-Level Strategic Plan</div>
+  <h1>Proximity<br><span>Foundation</span></h1>
+  <div class="header-sub">April 2026 – September 2026 · CCI Andheri, Mumbai</div>
+
+</div>
+
+<!-- NAV -->
+<div class="nav-bar">
+  <div class="nav-tab active" onclick="showSection('overview',this)">Overview</div>
+  <div class="nav-tab" onclick="showSection('timeline',this)">Month-by-Month</div>
+  <div class="nav-tab" onclick="showSection('pillars',this)">6 Pillars</div>
+  <div class="nav-tab" onclick="showSection('org',this)">Org &amp; Hiring</div>
+  <div class="nav-tab" onclick="showSection('donor',this)">Donors &amp; Partners</div>
+  <div class="nav-tab" onclick="showSection('csr',this)">CSR Plan</div>
+  <div class="nav-tab" onclick="showSection('content',this)">Content Plan</div>
+  <div class="nav-tab" onclick="showSection('lms',this)">LMS Track ✓</div>
+  <div class="nav-tab" onclick="showSection('kpis',this)">KPIs</div>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ OVERVIEW ═══════════════ -->
+<div id="overview" class="section active">
+  <div class="section-title">Director's Overview</div>
+
+  <div class="overview-grid">
+
+    <div class="stat-card">
+      <div class="stat-num">APR</div>
+      <div class="stat-month">Month 1 · April 2026</div>
+      <div class="stat-headline">Hire Everything</div>
+      <ul class="stat-targets">
+        <li>All roles recruited in priority order</li>
+        <li>Full team in seat by May 1</li>
+        <li>CSR &amp; content toolkits ready</li>
+        <li>LMS dev team confirmed</li>
+      </ul>
+    </div>
+
+    <div class="stat-card blue">
+      <div class="stat-num">MAY</div>
+      <div class="stat-month">Month 2 · May 2026</div>
+      <div class="stat-headline">Full Launch</div>
+      <ul class="stat-targets">
+        <li>Cohort #2 first session live</li>
+        <li>Partnerships &amp; marketing execution begins</li>
+        <li>LMS build underway</li>
+        <li>Donor brief in use</li>
+      </ul>
+    </div>
+
+    <div class="stat-card green">
+      <div class="stat-num">JUN</div>
+      <div class="stat-month">Month 3 · June 2026</div>
+      <div class="stat-headline">Visibility &amp; First Partner</div>
+      <ul class="stat-targets">
+        <li>Cohort #1 closes — full KPI report</li>
+        <li>1st CSR partner signed</li>
+        <li>Impact deck finalised</li>
+        <li>Volunteer open call live</li>
+      </ul>
+    </div>
+
+    <div class="stat-card gold">
+      <div class="stat-num">JUL</div>
+      <div class="stat-month">Month 4 · July 2026</div>
+      <div class="stat-headline">LMS &amp; Donors</div>
+      <ul class="stat-targets">
+        <li>LMS MVP live with Cohort #2</li>
+        <li>First HNI outreach — 3 conversations</li>
+        <li>2nd CSR partner in negotiation</li>
+        <li>Q1 impact newsletter sent</li>
+      </ul>
+    </div>
+
+    <div class="stat-card purple">
+      <div class="stat-num">AUG</div>
+      <div class="stat-month">Month 5 · August 2026</div>
+      <div class="stat-headline">Validate &amp; Scale</div>
+      <ul class="stat-targets">
+        <li>Cohort #2 final modules + portfolios</li>
+        <li>Cohort #3 planning begins</li>
+        <li>5 HNI follow-ups · refined ask</li>
+        <li>3rd CSR partner — close by Sept</li>
+      </ul>
+    </div>
+
+    <div class="stat-card blue">
+      <div class="stat-num">SEP</div>
+      <div class="stat-month">Month 6 · September 2026</div>
+      <div class="stat-headline">Impact &amp; Report</div>
+      <ul class="stat-targets">
+        <li>Cohort #2 graduation + full KPI report</li>
+        <li>3+ active CSR partners documented</li>
+        <li>1 committed donor pledge</li>
+        <li>Cohort #3 plan approved</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:32px">
+    <div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:20px">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent);margin-bottom:10px">HIRING</div>
+      <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:7px;font-size:13px">
+        <li>→ All roles recruited in April, by priority</li>
+        <li>→ Full team in seat by May 1</li>
+        <li>→ Details: Org &amp; Hiring tab</li>
+      </ul>
+    </div>
+    <div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:20px">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent);margin-bottom:10px">PROGRAM</div>
+      <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:7px;font-size:13px">
+        <li>→ Cohort #1 completes May / early June</li>
+        <li>→ Cohort #2 roster confirmed March · sessions start May</li>
+        <li>→ Cohort #3 planning begins August</li>
+        <li>→ Details: Month-by-Month tab</li>
+      </ul>
+    </div>
+    <div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:20px">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent);margin-bottom:10px">LMS</div>
+      <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:7px;font-size:13px">
+        <li>→ Full LMS team hired April</li>
+        <li>→ Architecture + build starts May</li>
+        <li>→ MVP target: July · Details: LMS Track tab</li>
+      </ul>
+    </div>
+    <div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:20px">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent);margin-bottom:10px">CSR PARTNERSHIPS</div>
+      <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:7px;font-size:13px">
+        <li>→ Plan + target list ready</li>
+        <li>→ Execution starts May · 3+ partners by Sept</li>
+        <li>→ Details: CSR Plan tab</li>
+      </ul>
+    </div>
+    <div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:20px">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent);margin-bottom:10px">CONTENT &amp; COMMS</div>
+      <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:7px;font-size:13px">
+        <li>→ 20-week plan ready</li>
+        <li>→ Posting starts May · LinkedIn + Instagram + Blog</li>
+        <li>→ Details: Content Plan tab</li>
+      </ul>
+    </div>
+    <div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:20px">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent);margin-bottom:10px">FUNDRAISING</div>
+      <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:7px;font-size:13px">
+        <li>→ 1-page donor brief ready (Cohort #1 data)</li>
+        <li>→ Full deck (8–10 slides) by June</li>
+        <li>→ 5+ HNI conversations · 1 pledge by Sept</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="focus-row">
+    <div class="focus-card">
+      <h3><div class="focus-icon">🎯</div>Director Time Allocation</h3>
+      <div class="pct-row"><div class="pct-label">Oversight &amp; Ops</div><div class="pct-bar-bg"><div class="pct-bar-fill" style="width:30%"></div></div><div class="pct-val">30%</div></div>
+      <div class="pct-row"><div class="pct-label">Partnerships</div><div class="pct-bar-bg"><div class="pct-bar-fill" style="width:30%"></div></div><div class="pct-val">30%</div></div>
+      <div class="pct-row"><div class="pct-label">Fundraising</div><div class="pct-bar-bg"><div class="pct-bar-fill blue" style="width:20%"></div></div><div class="pct-val">20%</div></div>
+      <div class="pct-row"><div class="pct-label">Systems &amp; LMS</div><div class="pct-bar-bg"><div class="pct-bar-fill blue" style="width:20%"></div></div><div class="pct-val">20%</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ MONTH-BY-MONTH ═══════════════ -->
+<div id="timeline" class="section">
+  <div class="section-title">Month-by-Month Plan</div>
+  <div class="section-desc">Each month is gated by who is actually available. Tasks are only assigned once the relevant hire is in seat. Click any month to see the full breakdown.</div>
+
+  <div class="month-grid">
+
+    <!-- APRIL -->
+    <div class="month-card" id="mc1" onclick="showMonth(1)">
+      <div class="month-header">
+        <div class="month-num">APRIL 2026 · M1</div>
+        <div class="month-title">Hire Everything</div>
+        <div class="month-theme">"All roles in, by priority order"</div>
+      </div>
+      <div class="month-tags">
+        <span class="tag red">All Hiring This Month</span>
+        <span class="tag gold">Cohort #2 Prep</span>
+        <span class="tag blue">Groundwork Only</span>
+      </div>
+      <div class="month-tasks">
+        <div class="task-item">→ Hire all roles (P1 → P2 → P3)</div>
+        <div class="task-item">→ Lock Cohort #2 roster &amp; timetable</div>
+        <div class="task-item">→ CSR &amp; content toolkit ready</div>
+        <div class="task-item">→ 1-page donor brief prepared</div>
+        <div class="task-item">→ LMS team + dev team confirmed</div>
+        <div class="task-item">→ 4 CSR directory listings set up</div>
+      </div>
+      <div class="month-exception">⚠️ Heaviest Director month — no external sessions until May</div>
+    </div>
+
+    <!-- MAY -->
+    <div class="month-card" id="mc2" onclick="showMonth(2)">
+      <div class="month-header">
+        <div class="month-num">MAY 2026 · M2</div>
+        <div class="month-title">Full Team, Full Launch</div>
+        <div class="month-theme">"Everyone operational from Day 1"</div>
+      </div>
+      <div class="month-tags">
+        <span class="tag red">Cohort #2 Starts</span>
+        <span class="tag blue">Partnerships Live</span>
+        <span class="tag gold">LMS Build Begins</span>
+      </div>
+      <div class="month-tasks">
+        <div class="task-item">→ All teams execute from Day 1</div>
+        <div class="task-item">→ Cohort #2 first session — HTML begins</div>
+        <div class="task-item">→ CSR Tier 1 outreach starts</div>
+        <div class="task-item">→ Content plan live: awareness posts</div>
+        <div class="task-item">→ LMS build underway</div>
+        <div class="task-item">→ 1-page donor brief in use</div>
+      </div>
+    </div>
+
+    <!-- JUNE -->
+    <div class="month-card" id="mc3" onclick="showMonth(3)">
+      <div class="month-header">
+        <div class="month-num">JUNE 2026 · M3</div>
+        <div class="month-title">Visibility &amp; First Partner</div>
+        <div class="month-theme">"Content engine + sign partner"</div>
+      </div>
+      <div class="month-tags">
+        <span class="tag purple">Full Content Cadence</span>
+        <span class="tag blue">1st Partnership</span>
+        <span class="tag red">Mid-Review</span>
+      </div>
+      <div class="month-tasks">
+        <div class="task-item">→ Cohort #1 closes — full KPI report</div>
+        <div class="task-item">→ Cohort #2 mid-review (CSS + JS)</div>
+        <div class="task-item">→ 1st CSR pilot delivered · MOU progressing</div>
+        <div class="task-item">→ Impact deck finalised with Cohort #1 data</div>
+        <div class="task-item">→ Volunteer open call + CSR CTA live</div>
+        <div class="task-item">→ LMS milestone review</div>
+      </div>
+      <div class="month-exception">⚠️ Note: Cohort #1 graduation this month — full KPI report required</div>
+    </div>
+
+    <!-- JULY -->
+    <div class="month-card" id="mc4" onclick="showMonth(4)">
+      <div class="month-header">
+        <div class="month-num">JULY 2026 · M4</div>
+        <div class="month-title">LMS &amp; Donors</div>
+        <div class="month-theme">"MVP live, HNIs contacted"</div>
+      </div>
+      <div class="month-tags">
+        <span class="tag green">LMS MVP</span>
+        <span class="tag gold">HNI Outreach</span>
+        <span class="tag blue">2nd Partner</span>
+      </div>
+      <div class="month-tasks">
+        <div class="task-item">→ Director focus: fundraising</div>
+        <div class="task-item">→ Cohort #2 SQL module — final stretch</div>
+        <div class="task-item">→ 2nd CSR partnership in negotiation</div>
+        <div class="task-item">→ 3 HNI conversations · Q1 newsletter</div>
+        <div class="task-item">→ LMS pilot with Cohort #2 if ready</div>
+        <div class="task-item">→ Cohort #3 volunteer structure drafting begins</div>
+      </div>
+      <div class="month-exception">💡 Director focus shifts fully to fundraising this month</div>
+    </div>
+
+    <!-- AUGUST -->
+    <div class="month-card" id="mc5" onclick="showMonth(5)">
+      <div class="month-header">
+        <div class="month-num">AUGUST 2026 · M5</div>
+        <div class="month-title">Validate &amp; Scale</div>
+        <div class="month-theme">"Numbers prove the case"</div>
+      </div>
+      <div class="month-tags">
+        <span class="tag green">LMS Iteration</span>
+        <span class="tag blue">3rd Partner</span>
+        <span class="tag gold">Donor Follow-up</span>
+      </div>
+      <div class="month-tasks">
+        <div class="task-item">→ Cohort #2 final modules completing</div>
+        <div class="task-item">→ 3rd CSR partnership — close by Sept</div>
+        <div class="task-item">→ 5 HNI follow-ups · refined ask</div>
+        <div class="task-item">→ LMS: iterate or complete build</div>
+        <div class="task-item">→ Ops playbooks drafted by each lead</div>
+        <div class="task-item">→ Learner portfolios + final projects</div>
+      </div>
+      <div class="month-exception">⚠️ Deadline: Cohort #3 volunteer structure must be finalised this month</div>
+    </div>
+
+    <!-- SEPTEMBER -->
+    <div class="month-card" id="mc6" onclick="showMonth(6)">
+      <div class="month-header">
+        <div class="month-num">SEPTEMBER 2026 · M6</div>
+        <div class="month-title">Impact &amp; Report</div>
+        <div class="month-theme">"Close, celebrate, plan next"</div>
+      </div>
+      <div class="month-tags">
+        <span class="tag red">Full KPI Report</span>
+        <span class="tag blue">Cohort #3 Plan</span>
+        <span class="tag purple">Newsletter</span>
+      </div>
+      <div class="month-tasks">
+        <div class="task-item">→ Full team performance reviews</div>
+        <div class="task-item">→ Cohort #2 graduation + Cohort #3 recruitment</div>
+        <div class="task-item">→ 3+ partners documented · expansion pitch</div>
+        <div class="task-item">→ 1 donor commitment target · Q2 newsletter</div>
+        <div class="task-item">→ LMS: board report + Phase 2 decision</div>
+        <div class="task-item">→ All ops playbooks finalised</div>
+      </div>
+      <div class="month-exception">🎯 Director leads outward narrative — board donor presentation this month</div>
+    </div>
+
+  </div>
+
+  <div id="month-detail" class="month-detail"></div>
+</div>
+
+<!-- ═══════════════ 6 PILLARS ═══════════════ -->
+<div id="pillars" class="section">
+  <div class="section-title">6 Strategic Pillars</div>
+  <div class="section-desc">Every action maps to one of these pillars. Timing of each pillar is gated by the team capacity available that month.</div>
+  <div class="pillars-overview">
+    <div class="pillar-card"><div class="pillar-emoji">🏫</div><h3>Program Delivery</h3><p>Cohort #2 at CCI Andheri, Mumbai — zero new infrastructure, full model replication. Led by Program Coordinator Lead once hired.</p><ul class="pillar-items" style="list-style:none;padding:0"><li>Recruit Std 10 &amp; 12 learners from existing CCI</li><li>HTML, CSS, JS, SQL via Khan Academy → LMS from July</li><li>KPIs: attendance ≥ 90%, assignments ≥ 90%, avg. score</li><li>Full impact report in September</li></ul></div>
+    <div class="pillar-card"><div class="pillar-emoji">👥</div><h3>Team &amp; Hiring</h3><p>All roles recruited simultaneously in April, onboarded in priority order. By May 1, all leads are operational and the Director is in oversight mode.</p><ul class="pillar-items" style="list-style:none;padding:0"><li>Week 1–2: P1 onboarded — Program Coord, Mentors, Tracker, Backup</li><li>Week 2–3: P2 onboarded — Partnerships Lead, LMS Lead</li><li>Week 3–4: P3 onboarded — Comms Lead, Content Creator, Support</li><li>LMS Content Developer + Reviewer hired with LMS Lead — all start together</li></ul></div>
+    <div class="pillar-card"><div class="pillar-emoji">🤝</div><h3>Digital Partnerships</h3><p>CSR, college &amp; community volunteer ecosystem. Partnerships Lead hired in April, onboarded by late April, hits the ground running in May.</p><ul class="pillar-items" style="list-style:none;padding:0"><li>April: Director maps targets + drafts templates during hiring</li><li>May: Partnerships Lead fully active, outreach to all 10 orgs</li><li>June: 1st partnership signed</li><li>Sept: 3+ active partners</li></ul></div>
+    <div class="pillar-card"><div class="pillar-emoji">💰</div><h3>Fundraising &amp; Donors</h3><p>HNI pipeline built on real data. Impact deck not sent until it contains Cohort #2 numbers.</p><ul class="pillar-items" style="list-style:none;padding:0"><li>April–May: Collect data, outline deck</li><li>June: Deck finalised with Cohort #2 mid-data</li><li>July: First HNI outreach batch</li><li>Sept: 1 committed donor target</li></ul></div>
+    <div class="pillar-card"><div class="pillar-emoji">📱</div><h3>Comms &amp; Content</h3><p>Comms Lead and Content Creator hired in April, onboarded by late April. Full content cadence from May — no lag.</p><ul class="pillar-items" style="list-style:none;padding:0"><li>April: content plan ready · assets identified · no posting</li><li>May onwards: full 20-week cadence across 2 tracks</li><li>Quarterly newsletters: July + September</li><li>All content with consent protocols from Day 1</li></ul></div>
+    <div class="pillar-card"><div class="pillar-emoji">💻</div><h3>LMS — GO Confirmed ✅</h3><p>GO decision received. LMS Lead hired April, building from May. Zero direct cost — pro bono devs + interns. A Guided Learning Overlay for cohort-based, job-readiness training.</p><ul class="pillar-items" style="list-style:none;padding:0"><li>April: LMS Lead onboarded, pro bono devs recruited, architecture scoped</li><li>May: Video player + quiz overlay build begins; weekly dev standups</li><li>June: Hindi instruction layer, progress blocking, content curation library</li><li>July: MVP live with Cohort #2 learners — mentor dashboard + leaderboard</li><li>Sept: 30% completion lift validated — board report + Phase 2 decision</li></ul></div>
+  </div>
+
+  <div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:28px">
+    <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:700;margin-bottom:16px">📣 Content &amp; Communication — Realistic Cadence</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+      <div><div style="font-weight:700;font-size:13px;margin-bottom:8px">April (planning month)</div><ul class="pillar-items" style="list-style:none;padding:0"><li>No posting — Comms team onboarding</li><li>Content plan + asset list finalised</li><li>Content bank being built for May</li></ul></div>
+      <div><div style="font-weight:700;font-size:13px;margin-bottom:8px">May onwards (full cadence)</div><ul class="pillar-items" style="list-style:none;padding:0"><li>LinkedIn 3×/week · Instagram 4×/week</li><li>Blog/Website 2×/month</li><li>Q1 newsletter (July), Q2 (September)</li></ul></div>
+      <div><div style="font-weight:700;font-size:13px;margin-bottom:8px">Themes</div><ul class="pillar-items" style="list-style:none;padding:0"><li>CCI student stories (with consent)</li><li>Volunteer journeys + spotlights</li><li>Data snapshots &amp; LMS milestones</li><li>Behind the scenes</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ ORG & HIRING ═══════════════ -->
+<div id="org" class="section">
+  <div class="section-title">Org Chart &amp; Hiring Plan</div>
+  <div class="section-desc">Based on the live Proximity Foundation org chart. All roles including LMS Content Developer and Curriculum Reviewer are recruited in April alongside the LMS Lead. Cohort #2 learner recruitment and timetable confirmed by end of March — before any hiring begins. CCI Andheri, Mumbai.</div>
+
+  <div class="org-container">
+    <div class="org-level"><div class="onode ceo">CEO<div class="osub">Vision · Strategy · Board · External</div></div></div>
+    <div class="vline"></div>
+    <div class="org-level"><div class="onode dir">Director of Operations<div class="osub">Ops · Partnerships · Fundraising · Systems</div></div></div>
+    <div class="vline"></div>
+    <div style="display:flex;justify-content:center;gap:0;position:relative;flex-wrap:wrap">
+      <div style="position:absolute;top:0;left:12%;right:12%;height:2px;background:var(--border)"></div>
+      <div class="dept-col" style="min-width:170px">
+        <div class="vline" style="height:20px"></div>
+        <div class="dept-label">Program Delivery</div>
+        <div><div class="hbadge p1">PRIORITY 1</div><div class="onode hire1">Program Coord Lead<div class="osub">1 Needed · April Wk 1–2</div></div></div>
+        <div class="vline" style="height:12px"></div>
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:center">
+          <div><div class="hbadge done">ACTIVE</div><div class="onode vol">Cohort 1 Mentors<div class="osub">3–4 · Rolls to Cohort #2</div></div></div>
+          <div><div class="hbadge p1">PRIORITY 1</div><div class="onode hire1">Cohort 2 Mentors<div class="osub">2–3 · April Wk 1–2</div></div></div>
+          <div><div class="hbadge p1">PRIORITY 1</div><div class="onode hire1">Progress Tracker<div class="osub">1 · April Wk 1–2</div></div></div>
+          <div><div class="hbadge p1">PRIORITY 1</div><div class="onode hire1">Backup Pool<div class="osub">2–3 · April Wk 1–2</div></div></div>
+          <div><div class="hbadge p1">PRIORITY 1</div><div class="onode hire1" style="border-left:3px solid #c84b2f">On-Site Volunteers<div class="osub">2–3 · In-person · Andheri East</div></div></div>
+        </div>
+      </div>
+      <div class="dept-col" style="min-width:160px">
+        <div class="vline" style="height:20px"></div>
+        <div class="dept-label">Comms &amp; Outreach</div>
+        <div><div class="hbadge p3">PRIORITY 3</div><div class="onode hire3">Comms &amp; Outreach Lead<div class="osub">1 · April Wk 3–4</div></div></div>
+        <div class="vline" style="height:12px"></div>
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:center">
+          <div><div class="hbadge p3">PRIORITY 3</div><div class="onode hire3">Content Creator<div class="osub">1 · April Wk 3–4</div></div></div>
+          <div><div class="hbadge p3">PRIORITY 3</div><div class="onode hire3">Vol. Sourcing Support<div class="osub">1 · April Wk 3–4</div></div></div>
+        </div>
+      </div>
+      <div class="dept-col" style="min-width:160px">
+        <div class="vline" style="height:20px"></div>
+        <div class="dept-label">Partnerships &amp; Growth</div>
+        <div><div class="hbadge p2">PRIORITY 2</div><div class="onode hire2">Partnerships Lead<div class="osub">1 · April Wk 2–3</div></div></div>
+        <div class="vline" style="height:12px"></div>
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:center">
+          <div><div class="hbadge p3">PRIORITY 3</div><div class="onode hire3">Market Research Support<div class="osub">1 · April Wk 3–4</div></div></div>
+          <div><div class="hbadge p3">PRIORITY 3</div><div class="onode hire3">Partnership Outreach Support<div class="osub">1 · April Wk 3–4</div></div></div>
+        </div>
+      </div>
+      <div class="dept-col" style="min-width:160px">
+        <div class="vline" style="height:20px"></div>
+        <div class="dept-label">Curriculum &amp; LMS</div>
+        <div style="margin-top:4px"><div class="hbadge p2">PRIORITY 2</div><div class="onode hire2">Curriculum &amp; LMS Lead<div class="osub">1 · April Wk 2–3</div></div></div>
+        <div class="vline" style="height:12px"></div>
+        <div style="display:flex;flex-direction:column;gap:6px;align-items:center">
+          <div><div class="hbadge p2">PRIORITY 2</div><div class="onode hire2">LMS Content Developer<div class="osub">April · With LMS Lead</div></div></div>
+          <div><div class="hbadge p2">PRIORITY 2</div><div class="onode hire2">Curriculum Reviewer<div class="osub">April · With LMS Lead</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="hire-table">
+    <thead><tr><th>Role</th><th>Dept</th><th>Count</th><th>Priority</th><th>April Timeline</th><th>What It Enables from May</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Program Coordinator Lead</strong></td><td>Program</td><td>1</td><td><span class="badge p1">Priority 1</span></td><td>Wk 1–2 · Onboard first</td><td>Cohort #2 sessions launch in May — Director hands off daily delivery</td></tr>
+      <tr><td><strong>Cohort 2 Session Mentors</strong></td><td>Program</td><td>2–3</td><td><span class="badge p1">Priority 1</span></td><td>Wk 1–2 · Onboard first</td><td>Bilingual sessions go live — Cohort #2 cannot start without these</td></tr>
+      <tr><td><strong>Student Progress Tracker</strong></td><td>Program</td><td>1</td><td><span class="badge p1">Priority 1</span></td><td>Wk 1–2 · Onboard first</td><td>KPI data collection from Day 1 of Cohort #2 — donor proof</td></tr>
+      <tr><td><strong>Backup Pool</strong></td><td>Program</td><td>2–3</td><td><span class="badge p1">Priority 1</span></td><td>Wk 1–2 · Onboard first</td><td>Session continuity — zero single point of failure</td></tr>
+      <tr><td><strong>Partnerships &amp; Engagement Lead</strong></td><td>Partnerships</td><td>1</td><td><span class="badge p2">Priority 2</span></td><td>Wk 2–3 · Onboard second</td><td>CSR + college outreach at pace from May — Director oversees, not executes</td></tr>
+      <tr><td><strong>Curriculum &amp; LMS Lead</strong></td><td>LMS</td><td>1</td><td><span class="badge p2">Priority 2</span></td><td>Wk 2–3 · Onboard second</td><td>LMS architecture + build begins in May with pro bono dev team</td></tr>
+      <tr><td><strong>Comms &amp; Outreach Lead</strong></td><td>Comms</td><td>1</td><td><span class="badge p3">Priority 3</span></td><td>Wk 3–4 · Onboard third</td><td>Full content cadence from May — LinkedIn + Instagram + Blog</td></tr>
+      <tr><td><strong>Content Creator</strong></td><td>Comms</td><td>1</td><td><span class="badge p3">Priority 3</span></td><td>Wk 3–4 · Onboard third</td><td>Visual storytelling for donors + partners from May</td></tr>
+      <tr><td><strong>Support Roles ×3</strong></td><td>Multiple</td><td>3</td><td><span class="badge p3">Priority 3</span></td><td>Wk 3–4 · Onboard third</td><td>Scale support behind their respective leads from May</td></tr>
+      <tr><td><strong>LMS Content Developer</strong></td><td>LMS</td><td>1–2</td><td><span class="badge p2">Priority 2</span></td><td>April · With LMS Lead</td><td>Begin content curation + LMS build support from May alongside LMS Lead</td></tr>
+      <tr><td><strong>Curriculum Reviewer</strong></td><td>LMS</td><td>1</td><td><span class="badge p2">Priority 2</span></td><td>April · With LMS Lead</td><td>Review and validate curriculum sequencing — feeds into LMS structure</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════ DONORS & PARTNERS ═══════════════ -->
+<div id="donor" class="section">
+  <div class="section-title">Donors &amp; Partnerships</div>
+  <div class="section-desc">Donor outreach doesn't start until July — once the impact deck is ready with real Cohort #2 data. Partnership outreach begins in May once the Partnerships Lead joins. Full detail in the separate Donors &amp; Partnerships Plan document.</div>
+  <div class="donor-grid">
+    <div class="donor-card">
+      <h3>💼 HNI Donor Strategy</h3>
+      <div class="tl-item"><div class="tl-dot">APR</div><div class="tl-text">Identify 5 HNI prospects. Outline impact deck structure (no outreach yet — no data).</div></div>
+      <div class="tl-item"><div class="tl-dot b">MAY</div><div class="tl-text">Begin Cohort #2 data collection. Draft deck slides 1–5. Collect first student story with consent.</div></div>
+      <div class="tl-item"><div class="tl-dot g">JUN</div><div class="tl-text">Impact deck finalized with mid-cohort data. Cost-per-cohort budget sheet complete.</div></div>
+      <div class="tl-item"><div class="tl-dot a">JUL</div><div class="tl-text">First HNI outreach batch (3 conversations). Q1 newsletter sent. Share early LMS pilot data alongside deck.</div></div>
+      <div class="tl-item"><div class="tl-dot">AUG</div><div class="tl-text">Warm follow-ups with all 5 prospects. Refine ask with completion rate improvement data.</div></div>
+      <div class="tl-item"><div class="tl-dot b">SEP</div><div class="tl-text">Target: 1 committed donor pledge. Board donor presentation (CEO leads, Director co-presents). Q2 newsletter.</div></div>
+    </div>
+    <div class="donor-card">
+      <h3>🌐 Partnership Outreach Timeline</h3>
+      <div class="tl-item"><div class="tl-dot">APR</div><div class="tl-text">Director maps 10 target CSR orgs. Drafts outreach templates. Sets up CRM + 4 directory listings. No outreach yet.</div></div>
+      <div class="tl-item"><div class="tl-dot b">MAY</div><div class="tl-text">Partnerships Lead joins. Outreach begins to Tier 1 orgs. First 1–2 discovery calls. Pro bono LMS dev recruitment live.</div></div>
+      <div class="tl-item"><div class="tl-dot g">JUN</div><div class="tl-text">First pilot session delivered. First MOU in negotiation or signed. Tier 2 outreach begins cautiously.</div></div>
+      <div class="tl-item"><div class="tl-dot a">JUL</div><div class="tl-text">2nd partnership in negotiation. CSR team in-person visit to CCI Andheri, Mumbai. College MoU in progress.</div></div>
+      <div class="tl-item"><div class="tl-dot">AUG</div><div class="tl-text">3rd partnership in negotiation — close by September. Monthly check-ins with active CSR contacts.</div></div>
+      <div class="tl-item"><div class="tl-dot b">SEP</div><div class="tl-text">3+ active partnerships documented. Partner impact summary produced. Cohort #3 expansion outreach begins.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ CSR PLAN ═══════════════ -->
+<div id="csr" class="section">
+  <div class="section-title">CSR Partnership Plan</div>
+  <div class="section-desc">High-level summary. Slow &amp; steady — depth over volume. One strong partnership is worth ten rushed conversations. 20 target organisations across 2 tiers. Full detail in the separate <strong>6-Month CSR Partnership Plan</strong> document.</div>
+
+  <div style="background:#fdf6e3;border:1.5px solid #e8d48a;border-radius:10px;padding:14px 18px;margin-bottom:28px;font-size:13px;color:#7a5800">
+    📄 Full plan, outreach templates, target org list, pipeline stages and golden rules are in the separate CSR Partnership Plan document.
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px">
+    <div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;overflow:hidden">
+      <div style="background:var(--ink);color:var(--paper);padding:14px 18px"><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--accent);letter-spacing:2px;margin-bottom:3px">APRIL–MAY · PHASE 1</div><div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700">Foundation</div><div style="font-size:11px;color:rgba(245,240,232,0.5);margin-top:2px">Set up systems · Build materials · First contacts</div></div>
+      <div style="padding:16px 18px">
+        <ul class="pillar-items" style="list-style:none;padding:0;font-size:12px">
+          <li>CRM set up — 20 orgs, 6 pipeline stages</li>
+          <li>4 NGO directory listings live (iVolunteer, Give India, Goodera, CSRBOX)</li>
+          <li>2-sided programme one-pager PDF ready</li>
+          <li>60–90s CCI session video shot</li>
+          <li>First 3 warm outreach messages sent (May)</li>
+        </ul>
+        <div style="margin-top:10px;padding:7px 10px;background:#e2f4eb;border-radius:6px;font-size:11px;color:var(--green);font-weight:600">✓ CRM live · 4 listings · Kit ready · 1–2 calls booked</div>
+      </div>
+    </div>
+    <div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;overflow:hidden">
+      <div style="background:var(--ink);color:var(--paper);padding:14px 18px"><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;margin-bottom:3px">JUNE–JULY · PHASE 2</div><div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700">First Partnerships</div><div style="font-size:11px;color:rgba(245,240,232,0.5);margin-top:2px">Discovery calls · Pilot session · First MOU</div></div>
+      <div style="padding:16px 18px">
+        <ul class="pillar-items" style="list-style:none;padding:0;font-size:12px">
+          <li>5+ discovery calls total</li>
+          <li>First pilot session delivered to a CSR partner</li>
+          <li>Pilot Impact Summary PDF within 48 hrs</li>
+          <li>1-page MOU after successful pilot</li>
+          <li>Begin Tier 2 outreach: 3–5 orgs only</li>
+        </ul>
+        <div style="margin-top:10px;padding:7px 10px;background:#e2f4eb;border-radius:6px;font-size:11px;color:var(--green);font-weight:600">✓ 1 pilot · 1 MOU · 5+ calls · Tier 2 begun</div>
+      </div>
+    </div>
+    <div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;overflow:hidden">
+      <div style="background:var(--ink);color:var(--paper);padding:14px 18px"><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--green);letter-spacing:2px;margin-bottom:3px">AUG–SEPT · PHASE 3</div><div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700">Consolidate &amp; Grow</div><div style="font-size:11px;color:rgba(245,240,232,0.5);margin-top:2px">Sustain active partners · Expand · Renew</div></div>
+      <div style="padding:16px 18px">
+        <ul class="pillar-items" style="list-style:none;padding:0;font-size:12px">
+          <li>Post-session impact report within 48 hrs — no exceptions</li>
+          <li>Monthly 15-min check-in with each CSR contact</li>
+          <li>Personal thank-you to each volunteer within 24 hrs</li>
+          <li>Start renewal conversation 6 weeks before MOU ends</li>
+          <li>3–5 partners active · 1 MOU renewed for Cohort #3</li>
+        </ul>
+        <div style="margin-top:10px;padding:7px 10px;background:#e2f4eb;border-radius:6px;font-size:11px;color:var(--green);font-weight:600">✓ 3–5 partners · 10+ volunteers · 1 MOU renewed for Cohort #3</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:24px">
+      <div style="font-family:'Fraunces',serif;font-size:17px;font-weight:700;margin-bottom:14px">📋 Golden Rules</div>
+      <div style="display:flex;flex-direction:column;gap:7px;font-size:12.5px">
+        <div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)"><span style="color:var(--green);font-weight:700;flex-shrink:0">✓</span>Always try warm intro before cold outreach</div>
+        <div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)"><span style="color:var(--green);font-weight:700;flex-shrink:0">✓</span>Research each org's CSR report before every call</div>
+        <div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)"><span style="color:var(--green);font-weight:700;flex-shrink:0">✓</span>Max 5 new orgs contacted per month</div>
+        <div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)"><span style="color:var(--green);font-weight:700;flex-shrink:0">✓</span>Offer free Pilot Session early — removes biggest adoption barrier</div>
+        <div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)"><span style="color:var(--green);font-weight:700;flex-shrink:0">✓</span>Impact report within 48 hrs of every session — no exceptions</div>
+        <div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)"><span style="color:var(--accent);font-weight:700;flex-shrink:0">✗</span>Do not bulk-email — every message must be personalised</div>
+        <div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)"><span style="color:var(--accent);font-weight:700;flex-shrink:0">✗</span>Max 2 follow-ups per contact — then mark as cold</div>
+        <div style="display:flex;gap:8px;padding:6px 0"><span style="color:var(--accent);font-weight:700;flex-shrink:0">✗</span>Never describe Proximity as "small" — describe it as "focused"</div>
+      </div>
+    </div>
+    <div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:24px">
+      <div style="font-family:'Fraunces',serif;font-size:17px;font-weight:700;margin-bottom:14px">📊 Partnership KPIs (High-Level)</div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12.5px"><span>Tier 1 orgs contacted</span><span style="font-family:'DM Mono',monospace;font-size:11px"><span style="color:var(--muted)">M2:3</span> · <span style="color:var(--gold)">M4:6</span> · <span style="color:var(--green)">M6:8</span></span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12.5px"><span>Discovery calls done</span><span style="font-family:'DM Mono',monospace;font-size:11px"><span style="color:var(--muted)">M2:1–2</span> · <span style="color:var(--gold)">M4:5</span> · <span style="color:var(--green)">M6:8+</span></span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12.5px"><span>Active MOUs signed</span><span style="font-family:'DM Mono',monospace;font-size:11px"><span style="color:var(--muted)">M2:0</span> · <span style="color:var(--gold)">M4:1–2</span> · <span style="color:var(--green)">M6:3–5</span></span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12.5px"><span>Active volunteers</span><span style="font-family:'DM Mono',monospace;font-size:11px"><span style="color:var(--muted)">M2:0–2</span> · <span style="color:var(--gold)">M4:5–8</span> · <span style="color:var(--green)">M6:10–15</span></span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:12.5px"><span>Volunteer NPS <span style="font-size:10px;color:var(--muted);font-weight:400">(Net Promoter Score — 0–10 likelihood to recommend volunteering here)</span></span><span style="font-family:'DM Mono',monospace;font-size:11px"><span style="color:var(--gold)">M4:≥7.5</span> · <span style="color:var(--green)">M6:≥8.5</span></span></div>
+        <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:12.5px"><span>MOUs renewed for Cohort #3</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--green)">M6:≥60%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ CONTENT PLAN ═══════════════ -->
+<div id="content" class="section">
+  <div class="section-title">Marketing Content Rollout Plan</div>
+  <div class="section-desc">20-week plan (May–September 2026) across two tracks. April is planning-only — no content published until May. Full plan, 20-week calendar, templates and assets checklist in the separate document.</div>
+
+  <div style="background:#fdf6e3;border:1.5px solid #e8d48a;border-radius:10px;padding:14px 18px;margin-bottom:28px;font-size:13px;color:#7a5800">
+    📄 Full 20-week calendar, all post outlines, templates, assets checklist and metrics are in the separate Content Rollout Plan document.
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px">
+    <div style="background:#e4eef8;border:2px solid #2563a8;border-radius:12px;padding:24px">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:#2563a8;margin-bottom:8px">SECTION A</div>
+      <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:700;margin-bottom:8px;color:#1a3a5c">CSR Partnership Content</div>
+      <div style="font-size:12.5px;color:#2a2520;margin-bottom:12px;line-height:1.6">Monthly cadence · relationship-triggered · B2B<br>Audience: Corporate CSR leads, HR heads<br>Channels: Direct email · LinkedIn DM · NGO directories</div>
+      <div style="font-size:11.5px;font-weight:700;color:#2563a8;margin-bottom:6px">KEY DELIVERABLES BY MONTH</div>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <div style="font-size:11.5px;padding:5px 8px;background:rgba(255,255,255,0.7);border-radius:6px"><span style="font-family:'DM Mono',monospace;color:#2563a8;font-size:9px">APR</span> · Programme one-pager · MOU template · Impact report template · 90-sec video</div>
+        <div style="font-size:11.5px;padding:5px 8px;background:rgba(255,255,255,0.7);border-radius:6px"><span style="font-family:'DM Mono',monospace;color:#2563a8;font-size:9px">MAY</span> · First outreach emails (3–5 orgs) · NGO directory listings live</div>
+        <div style="font-size:11.5px;padding:5px 8px;background:rgba(255,255,255,0.7);border-radius:6px"><span style="font-family:'DM Mono',monospace;color:#2563a8;font-size:9px">JUN</span> · Post-call summaries · tailored proposals · pilot offer letters</div>
+        <div style="font-size:11.5px;padding:5px 8px;background:rgba(255,255,255,0.7);border-radius:6px"><span style="font-family:'DM Mono',monospace;color:#2563a8;font-size:9px">JUL</span> · Pilot briefing pack · Pilot Impact Summary · MOU · volunteer onboarding pack</div>
+        <div style="font-size:11.5px;padding:5px 8px;background:rgba(255,255,255,0.7);border-radius:6px"><span style="font-family:'DM Mono',monospace;color:#2563a8;font-size:9px">AUG</span> · Post-session impact reports (within 48 hrs) · Tier 2 outreach · MOU renewal starts</div>
+        <div style="font-size:11.5px;padding:5px 8px;background:rgba(255,255,255,0.7);border-radius:6px"><span style="font-family:'DM Mono',monospace;color:#2563a8;font-size:9px">SEP</span> · Cohort Impact Summary · MOU renewal proposals · partner exit thank-you · learnings doc</div>
+      </div>
+    </div>
+    <div style="background:#e2f4eb;border:2px solid #2d7a4f;border-radius:12px;padding:24px">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:#2d7a4f;margin-bottom:8px">SECTION B</div>
+      <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:700;margin-bottom:8px;color:#1a3a5c">Social Media &amp; Website</div>
+      <div style="font-size:12.5px;color:#2a2520;margin-bottom:12px;line-height:1.6">Weekly cadence · consistent publishing rhythm<br>Audience: Volunteers, donors, general public<br>Channels: LinkedIn (3×/wk) · Instagram (4×/wk) · Blog (2×/month)</div>
+      <div style="font-size:11.5px;font-weight:700;color:#2d7a4f;margin-bottom:6px">PHASE BY PHASE (MAY–SEPTEMBER)</div>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <div style="font-size:11.5px;padding:5px 8px;background:rgba(255,255,255,0.7);border-radius:6px"><span style="font-family:'DM Mono',monospace;color:#2d7a4f;font-size:9px">MAY · WK 1–4 · WARM OUTREACH</span> · "Why we started" · CCI reel · Cohort carousel · blog launch</div>
+        <div style="font-size:11.5px;padding:5px 8px;background:rgba(255,255,255,0.7);border-radius:6px"><span style="font-family:'DM Mono',monospace;color:#2d7a4f;font-size:9px">JUN · WK 5–8 · PITCH &amp; CONVERT</span> · Volunteer spotlight · "What is a CCI" article · BTS reel</div>
+        <div style="font-size:11.5px;padding:5px 8px;background:rgba(255,255,255,0.7);border-radius:6px"><span style="font-family:'DM Mono',monospace;color:#2d7a4f;font-size:9px">JUL · WK 9–12 · ONBOARD &amp; SCALE</span> · First student impact · volunteer open call · day-in-life reel</div>
+        <div style="font-size:11.5px;padding:5px 8px;background:rgba(255,255,255,0.7);border-radius:6px"><span style="font-family:'DM Mono',monospace;color:#2d7a4f;font-size:9px">AUG · WK 13–16 · DEEPEN &amp; RETAIN</span> · Opportunity gap article · volunteer FAQ carousel · Cohort 3 CTA</div>
+        <div style="font-size:11.5px;padding:5px 8px;background:rgba(255,255,255,0.7);border-radius:6px"><span style="font-family:'DM Mono',monospace;color:#2d7a4f;font-size:9px">SEP · WK 17–20 · REVIEW &amp; RENEW</span> · 20-week recap · donor story · graduation reel · wrap carousel</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px">
+    <div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:20px">
+      <div style="font-size:20px;margin-bottom:8px">🤝</div>
+      <div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;margin-bottom:4px">CSR Partners</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Corporate CSR / HR leads · tech, telecom, banking</div>
+      <div style="font-size:12px;font-weight:700;color:var(--accent2)">Goal: 3–5 active MOUs by September</div>
+    </div>
+    <div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:20px">
+      <div style="font-size:20px;margin-bottom:8px">🙋</div>
+      <div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;margin-bottom:4px">Volunteers</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">Tech professionals, working adults in Mumbai</div>
+      <div style="font-size:12px;font-weight:700;color:var(--green)">Goal: 8–12 volunteers for next cohort</div>
+    </div>
+    <div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:20px">
+      <div style="font-size:20px;margin-bottom:8px">💛</div>
+      <div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;margin-bottom:4px">Donors</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:8px">HNIs, NRI diaspora, impact-first individuals</div>
+      <div style="font-size:12px;font-weight:700;color:var(--gold)">Goal: 5+ conversations · 2+ warm by September</div>
+    </div>
+  </div>
+
+  <div style="background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:22px">
+    <div style="font-family:'Fraunces',serif;font-size:17px;font-weight:700;margin-bottom:14px">7 Content Pillars</div>
+    <div style="display:flex;flex-direction:column;gap:7px">
+      <div style="display:flex;gap:10px;align-items:center;font-size:12.5px;padding:5px 0;border-bottom:1px solid var(--border)"><span style="font-family:'DM Mono',monospace;font-size:9px;background:#fde8e4;color:#c84b2f;padding:2px 7px;border-radius:10px;flex-shrink:0">P1</span>Student Stories — real impact, anonymised or with consent</div>
+      <div style="display:flex;gap:10px;align-items:center;font-size:12.5px;padding:5px 0;border-bottom:1px solid var(--border)"><span style="font-family:'DM Mono',monospace;font-size:9px;background:#e4eef8;color:#2563a8;padding:2px 7px;border-radius:10px;flex-shrink:0">P2</span>Volunteer Voices — why they show up every week</div>
+      <div style="display:flex;gap:10px;align-items:center;font-size:12.5px;padding:5px 0;border-bottom:1px solid var(--border)"><span style="font-family:'DM Mono',monospace;font-size:9px;background:#e2f4eb;color:#2d7a4f;padding:2px 7px;border-radius:10px;flex-shrink:0">P3</span>The Problem — the education gap for CCI children</div>
+      <div style="display:flex;gap:10px;align-items:center;font-size:12.5px;padding:5px 0;border-bottom:1px solid var(--border)"><span style="font-family:'DM Mono',monospace;font-size:9px;background:#fdf3df;color:#a07830;padding:2px 7px;border-radius:10px;flex-shrink:0">P4</span>The Program — what we teach, how it works</div>
+      <div style="display:flex;gap:10px;align-items:center;font-size:12.5px;padding:5px 0;border-bottom:1px solid var(--border)"><span style="font-family:'DM Mono',monospace;font-size:9px;background:#f0e8f8;color:#7030a0;padding:2px 7px;border-radius:10px;flex-shrink:0">P5</span>Behind the Scenes — day-in-the-life at our CCI</div>
+      <div style="display:flex;gap:10px;align-items:center;font-size:12.5px;padding:5px 0;border-bottom:1px solid var(--border)"><span style="font-family:'DM Mono',monospace;font-size:9px;background:#dbeafe;color:#1e40af;padding:2px 7px;border-radius:10px;flex-shrink:0">P6</span>Partnership Impact — structured data for CSR reporting <em style="color:var(--muted)">(CSR only)</em></div>
+      <div style="display:flex;gap:10px;align-items:center;font-size:12.5px;padding:5px 0"><span style="font-family:'DM Mono',monospace;font-size:9px;background:#ede9fe;color:#5b21b6;padding:2px 7px;border-radius:10px;flex-shrink:0">P7</span>Credibility &amp; Proof — safeguarding, process, track record <em style="color:var(--muted)">(CSR only)</em></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ LMS ═══════════════ -->
+<div id="lms" class="section">
+  <div class="section-title">LMS Development Track</div>
+  <div class="section-desc">A Guided Learning Overlay for cohort-based, job-readiness training in regional languages. Zero direct cost — pro bono dev team. Full LMS team hired in April; architecture and build begins in May once the team is in seat.</div>
+  <div class="lms-grid">
+    <div class="lcard">
+      <h3>What We're Building</h3>
+      <ul class="pillar-items" style="list-style:none;padding:0">
+        <li>Multi-source video curation (YouTube + volunteer content)</li>
+        <li>Quiz overlay mid-video — forced participation</li>
+        <li>Progress blocking until answers submitted</li>
+        <li>Instruction layer in Hindi / Marathi (not just English)</li>
+        <li>Volunteer mentor dashboard + cohort progress heatmap</li>
+        <li>Job-readiness tracks — not academic orientation</li>
+        <li>Volunteer-produced local content support</li>
+      </ul>
+    </div>
+    <div class="lcard">
+      <h3>Build Timeline</h3>
+      <div class="tl-item"><div class="tl-dot">APR</div><div class="tl-text">Full LMS team hired — Lead, Content Developer, Curriculum Reviewer. Pro bono dev team (3–4 engineers) confirmed.</div></div>
+      <div class="tl-item"><div class="tl-dot b">MAY</div><div class="tl-text">Architecture scoped. Build begins — video player + quiz overlay + Hindi instruction layer + progress blocking built together. Target: vanilla MVP by end of May or early June.</div></div>
+      <div class="tl-item"><div class="tl-dot g">JUN</div><div class="tl-text"><strong>Vanilla MVP launches</strong> with Cohort #2 learners. Content curation library growing. Mentor dashboard live. Baseline captured.</div></div>
+      <div class="tl-item"><div class="tl-dot a">JUL</div><div class="tl-text">Iterate on learner data. Leaderboard + progress heatmap added. Completion rate vs Khan Academy being tracked.</div></div>
+      <div class="tl-item"><div class="tl-dot">AUG</div><div class="tl-text">Iterate on user data. Add 2nd language. Compare completion rates vs Khan Academy baseline.</div></div>
+      <div class="tl-item"><div class="tl-dot b">SEP</div><div class="tl-text">Board-level validation report. 30% lift validated or lessons documented. Phase 2 decision.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ KPIS ═══════════════ -->
+<div id="kpis" class="section">
+  <div class="section-title">KPIs &amp; Success Metrics</div>
+  <div class="section-desc">High-level metrics by pillar. Owner is the role responsible — if that role isn't hired yet, Director owns it. Detailed KPI tracking in the separate programme documents.</div>
+  <table class="kpi-table">
+    <thead><tr><th>Pillar</th><th>Metric</th><th>Target</th><th>Month / When</th><th>Owner</th><th>Priority</th></tr></thead>
+    <tbody>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#fde8e4;color:#c84b2f">Hiring</span></td><td>All roles filled — as per org chart and priority</td><td>All by April end</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#c84b2f">April · end of month</td><td>Director of Operations</td><td><span class="badge p1">Critical</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#e4eef8;color:#2563a8">Program</span></td><td>Cohort #2 attendance rate</td><td>≥ 90%</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#2563a8">May–Sept · per session</td><td>Program Coord Lead</td><td><span class="badge p1">High</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#e4eef8;color:#2563a8">Program</span></td><td>Assignment completion rate</td><td>≥ 90%</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#2563a8">May–Sept · per session</td><td>Progress Tracker</td><td><span class="badge p1">High</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#e4eef8;color:#2563a8">Program</span></td><td>Average learner score</td><td>Track baseline → improvement</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#2563a8">May–Sept · monthly</td><td>Progress Tracker</td><td><span class="badge p1">High</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#fdf3df;color:#a07830">Fundraising</span></td><td>1-page donor brief ready</td><td>April</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#a07830">April · end of month</td><td>Director of Operations</td><td><span class="badge p1">High</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#fdf3df;color:#a07830">Fundraising</span></td><td>Full impact deck (8–10 slides)</td><td>Ready by June</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#a07830">June · Month 3</td><td>Director of Operations</td><td><span class="badge p2">Medium</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#fdf3df;color:#a07830">Fundraising</span></td><td>HNI conversations initiated</td><td>5+ by September</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#a07830">July (first 3) · Sept total</td><td>Director of Operations</td><td><span class="badge p2">Medium</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#fdf3df;color:#a07830">Fundraising</span></td><td>Committed donor pledge</td><td>1 by September</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#a07830">September · Month 6</td><td>Director of Operations</td><td><span class="badge p2">Medium</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#e0f2f1;color:#1a7a6e">CSR</span></td><td>Directory listings live</td><td>4 by end of April</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#1a7a6e">April · end of month</td><td>Director of Operations</td><td><span class="badge p1">High</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#e0f2f1;color:#1a7a6e">CSR</span></td><td>Discovery calls completed</td><td>M2:1–2 · M4:5 · M6:8+</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#1a7a6e">May onwards · ongoing</td><td>Partnerships Lead</td><td><span class="badge p2">Medium</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#e0f2f1;color:#1a7a6e">CSR</span></td><td>Active MOUs signed</td><td>M4:1–2 · M6:3–5</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#1a7a6e">July (first) · Sept total</td><td>Partnerships Lead</td><td><span class="badge p2">Medium</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#e0f2f1;color:#1a7a6e">CSR</span></td><td>Active volunteers registered</td><td>M4:5–8 · M6:10–15</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#1a7a6e">July milestone · Sept total</td><td>Partnerships Lead</td><td><span class="badge p2">Medium</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#f0e8f8;color:#7030a0">Content</span></td><td>Content cadence live (LinkedIn + IG + Blog)</td><td>May onwards · 20 weeks</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#7030a0">May–Sept · weekly</td><td>Comms Lead</td><td><span class="badge done">Ongoing</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#f0e8f8;color:#7030a0">Content</span></td><td>Volunteer applications via content</td><td>8+ by August (M5)</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#7030a0">August · Month 5</td><td>Comms Lead</td><td><span class="badge p2">Medium</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#f0e8f8;color:#7030a0">Content</span></td><td>Impact newsletters sent</td><td>2 total</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#7030a0">July (M4) + September (M6)</td><td>Comms Lead</td><td><span class="badge done">Ongoing</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#e2f4eb;color:#2d7a4f">LMS</span></td><td>LMS team + pro bono devs confirmed</td><td>By end of April</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#2d7a4f">April · end of month</td><td>Director of Operations</td><td><span class="badge p1">Critical</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#e2f4eb;color:#2d7a4f">LMS</span></td><td>MVP launched</td><td>July (target)</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#2d7a4f">July · Month 4</td><td>LMS Lead</td><td><span class="badge p2">Medium</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#e2f4eb;color:#2d7a4f">LMS</span></td><td>Completion rate improvement</td><td>30% lift vs baseline</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#2d7a4f">Tracked May → M6 report</td><td>LMS Lead + Progress Tracker</td><td><span class="badge p1">High</span></td></tr>
+      <tr><td><span style="display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;background:#e2f4eb;color:#2d7a4f">LMS</span></td><td>Regional languages supported</td><td>2+ (Hindi + 1)</td><td style="font-family:'DM Mono',monospace;font-size:11px;color:#2d7a4f">September · Month 6</td><td>LMS Lead</td><td><span class="badge p2">Medium</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+</div><!-- end main -->
+
+<footer>PROXIMITY FOUNDATION · <span>DIRECTOR OPERATIONAL PLAN</span> · APRIL 2026 – SEPTEMBER 2026 · CONFIDENTIAL</footer>
+
+<script>
+const monthData = {
+  1:{
+    title:"April 2026 — Hire & Prepare",
+    theme:"All hiring completed by April end. Groundwork laid. No sessions until May.",
+    capacity:"💡 Heaviest Director month. Cohort #2 roster + timetable already confirmed in March. April is purely hiring, onboarding, and prep — so May is a clean full-team launch.",
+    pillars:[
+      {c:"red",l:"Hiring",items:["All roles recruited and onboarded by April end — as per org chart and priority order","P1 (Program team) onboarded first, P2 (Partnerships + LMS) second, P3 (Comms) third","Full LMS team (Lead + Content Developer + Reviewer) hired together as a unit"],kpi:"KPI: All roles filled by April end"},
+      {c:"blue",l:"Program Delivery",items:["Cohort #2 learner roster + timetable confirmed in March — locked before hiring started","Cohort #1 still running — completing by end of May or early June","Cohort #2 prep: curriculum, KPI tracking, CCI Andheri logistics confirmed — no sessions until May"],kpi:"KPI: Cohort #2 ready to launch May 1 · Cohort #1 on track to complete"},
+      {c:"gold",l:"CSR Partnerships",items:["CSR partnership plan and full target list ready (refer CSR Plan tab)","Setup work done in April: CRM, 4 directory listings, partnership kit, outreach templates","Execution begins in May once Partnerships Lead is fully onboarded"],kpi:"KPI: All setup ready for May launch"},
+      {c:"gold",l:"Fundraising",items:["Cohort #1 data compiled","1-page donor brief prepared — for early informal conversations","5 HNI prospects identified — no outreach yet"],kpi:"KPI: 1-page donor brief ready · 5 HNI prospects identified"},
+      {c:"purple",l:"Content & Comms",items:["20-week content rollout plan ready (refer Content Plan tab)","Comms Lead + Content Creator onboarded by Wk 3–4 — briefed on plan","Content execution begins in May once team is in seat — no posting in April"],kpi:"KPI: Comms team briefed · Plan ready to execute from May"},
+      {c:"green",l:"LMS",items:["Full LMS team onboarded — Lead, Content Developer, Curriculum Reviewer","Pro bono dev team confirmed alongside LMS Lead","Architecture agreed — LMS build starts as soon as team is ready in May"],kpi:"KPI: Full LMS team in place · Dev team confirmed"}
+    ]
+  },
+  2:{
+    title:"May 2026 — Full Team, Full Launch",
+    theme:"All workstreams activate. Cohort #2 live. LMS build begins. Partnerships and content execution starts.",
+    capacity:"✅ Full team in seat from Day 1. Director in oversight — unblocking, not doing.",
+    pillars:[
+      {c:"red",l:"Team & Ops",items:["All leads operational — first team check-in with Director","In-person volunteers active at CCI Andheri, Mumbai — verified, safeguarding-briefed","Director: available for key decisions and unblocking"],kpi:"KPI: All teams executing · Director check-ins in place"},
+      {c:"blue",l:"Program Delivery",items:["Cohort #2 first session live — HTML module begins","Cohort #1 in final weeks — completing by end of May or early June","Cohort #1 mentor review underway — confirmed volunteers roll to Cohort #2"],kpi:"KPI: Cohort #2 first session live · Attendance ≥ 90% · Cohort #1 on track to close"},
+      {c:"gold",l:"CSR Partnerships",items:["Partnerships Lead begins execution of CSR plan — outreach to Tier 1 orgs","Warm intro requests activated via CEO + board network","All setup (CRM, directories, kit) done in April — execution starts now"],kpi:"KPI: First Tier 1 outreach sent · Discovery calls being booked"},
+      {c:"gold",l:"Fundraising",items:["1-page donor brief in active use for early conversations","Cohort #1 completion data feeding into brief","Full deck build begins mid-month"],kpi:"KPI: Early HNI conversations started · Deck in progress"},
+      {c:"purple",l:"Content & Comms",items:["Comms Lead executes 20-week content plan from Day 1 (refer Content Plan tab)","Month 1 content live: awareness posts, first session BTS, volunteer spotlight"],kpi:"KPI: Content cadence running · Volunteer sign-up live"},
+      {c:"green",l:"LMS",items:["LMS build begins as soon as team is ready — no fixed start date pressure","LMS Lead + Content Developer + Reviewer working in tandem with dev team","Director attends fortnightly milestone review"],kpi:"KPI: Build underway · Dev standups established"}
+    ]
+  },
+  3:{
+    title:"June 2026 — Visibility & First Partner",
+    theme:"Cohort #1 closes. First CSR partner signed. Impact deck ready.",
+    capacity:"✅ All teams 2 months in. Director in strategic mode.",
+    pillars:[
+      {c:"red",l:"Team & Ops",items:["Monthly 1:1s with all leads","Cohort #1 mentor review complete — volunteers confirmed for Cohort #2","In-person volunteers ongoing at CCI Andheri, Mumbai"],kpi:"KPI: Mentor transitions confirmed · No unresolved blockers"},
+      {c:"blue",l:"Program Delivery",items:["Cohort #1 closes — graduation, full KPI report, learnings documented","Cohort #2 mid-program review — CSS + JS modules underway","Cohort #1 volunteer review complete — transition to Cohort #2 or exit"],kpi:"KPI: Cohort #1 closed with full report · Cohort #2 mid-review done · Attendance ≥ 90%"},
+      {c:"gold",l:"CSR Partnerships",items:["First pilot session delivered to a CSR partner","First MOU in negotiation or signed","Tier 2 outreach begins cautiously"],kpi:"KPI: 1 pilot delivered · 1 MOU progressing"},
+      {c:"gold",l:"Fundraising",items:["Impact deck finalised (8–10 slides) — Cohort #1 real data + Cohort #2 early numbers","Cost-per-cohort budget complete","Director briefs on HNI outreach plan for July"],kpi:"KPI: Deck ready · Budget done"},
+      {c:"purple",l:"Content & Comms",items:["Content plan: action phase — volunteer open call, donor story post, CSR CTA","Cohort #1 wrap content published"],kpi:"KPI: Content cadence running · CSR partnership story live"},
+      {c:"green",l:"LMS",items:["Build in progress — LMS Lead owns pace and timeline","Director reviews milestones fortnightly","Cohort #1 learnings integrated into curriculum and LMS structure"],kpi:"KPI: Milestones reviewed · Build on track"}
+    ]
+  },
+  4:{
+    title:"July 2026 — HNI Outreach & LMS Progress",
+    theme:"First donor conversations. Partnerships growing. LMS build continuing.",
+    capacity:"✅ Full team 3 months in. Director focused on fundraising.",
+    pillars:[
+      {c:"red",l:"Team & Ops",items:["Director: strategic reviews only","In-person volunteers ongoing — Cohort #2 sessions at CCI Andheri","Cohort #3 volunteer structure being drafted"],kpi:"KPI: In-person sessions running · Cohort #3 planning started"},
+      {c:"blue",l:"Program Delivery",items:["Cohort #2: SQL module — final curriculum stretch","In-person mentors delivering sessions; Backup Pool supporting","If LMS is ready: pilot with Cohort #2 learners"],kpi:"KPI: Cohort #2 on track · Attendance ≥ 90% · LMS pilot if ready"},
+      {c:"gold",l:"CSR Partnerships",items:["2nd partnership in negotiation","CSR team in-person visit to CCI Andheri, Mumbai","College MoU in progress"],kpi:"KPI: 2 partnerships active or in negotiation"},
+      {c:"gold",l:"Fundraising",items:["Q1 Impact Newsletter sent","First HNI outreach batch — 3 conversations this month","Impact deck with Cohort #2 mid-data delivered"],kpi:"KPI: 3 HNI conversations · Newsletter sent"},
+      {c:"purple",l:"Content & Comms",items:["CSR partner highlight post · volunteer story · volunteer spotlight #3","LinkedIn 3×/week cadence maintained"],kpi:"KPI: Content cadence maintained · Posts on track"},
+      {c:"green",l:"LMS",items:["Build continues at LMS Lead's pace","Director attends fortnightly review","If MVP ready: pilot begins with learners (see Program Delivery)"],kpi:"KPI: Milestone reviewed · Pilot launched if ready"}
+    ]
+  },
+  5:{
+    title:"August 2026 — Validate & Warm Donors",
+    theme:"Final Cohort #2 modules. Donor conversations deepening. LMS nearing completion.",
+    capacity:"✅ All teams 4 months in — fully autonomous. Director on fundraising.",
+    pillars:[
+      {c:"red",l:"Team & Ops",items:["In-person volunteers: final Cohort #2 sessions at CCI Andheri, Mumbai","Cohort #3 volunteer structure finalised — this must close this month","Ops playbooks being documented by each lead"],kpi:"KPI: Cohort #3 structure finalised · Playbooks drafted"},
+      {c:"blue",l:"Program Delivery",items:["Final Cohort #2 curriculum modules completing","Volunteer review: who moves to Cohort #3","Learner portfolios and final projects underway","LMS completion data tracked if live","Cohort #3 planning begins — structure, curriculum scope, volunteer list drafted"],kpi:"KPI: Assignment completion ≥ 90% · Cohort #3 planning underway"},
+      {c:"gold",l:"CSR Partnerships",items:["3rd partnership in negotiation — close by September","Monthly check-ins with active CSR contacts","Renewal conversations started for any expiring MOUs"],kpi:"KPI: 3 partnerships active or in final stage"},
+      {c:"gold",l:"Fundraising",items:["Warm follow-ups with all 5 HNI prospects","Cohort #2 progress data + Cohort #1 completion outcomes shared","Refine ask: cost per cohort + sustainability"],kpi:"KPI: 5 HNI conversations total · Refined ask ready"},
+      {c:"purple",l:"Content & Comms",items:["Impact numbers post · learner project showcase · volunteer spotlight #4","Q2 newsletter content drafted"],kpi:"KPI: Content cadence maintained · Newsletter ready"},
+      {c:"green",l:"LMS",items:["Build at LMS Lead's pace — Director reviews monthly","If live: iterating on learner data","If not yet live: build continuing — quality over speed"],kpi:"KPI: LMS status report drafted"}
+    ]
+  },
+  6:{
+    title:"September 2026 — Impact Report & Next Chapter",
+    theme:"Close the loop. Celebrate the team. Set up Cohort #3.",
+    capacity:"✅ Director leads outward narrative — donors, board, public.",
+    pillars:[
+      {c:"red",l:"Team & Planning",items:["Full team performance reviews","Cohort #3 plan confirmed and presented to CEO","All ops playbooks finalised"],kpi:"KPI: Cohort #3 plan approved · Playbooks done"},
+      {c:"blue",l:"Program Delivery",items:["Cohort #2 graduation ceremony","Full Cohort #2 impact report published","Volunteers confirmed for Cohort #3 — transition briefing done","Cohort #3 learner recruitment begins"],kpi:"KPI: Cohort #2 impact report published · Cohort #3 recruitment begun"},
+      {c:"gold",l:"CSR Partnerships",items:["3+ active partners documented","Partner impact summary produced","Cohort #3 expansion outreach begins"],kpi:"KPI: 3 signed partners · Expansion pitch ready"},
+      {c:"gold",l:"Fundraising",items:["Q2 Impact Newsletter: Cohort #2 full outcomes + learner stories","Board donor presentation — CEO leads, Director co-presents","Target: 1 committed pledge secured"],kpi:"KPI: 1 donor commitment · Newsletter sent"},
+      {c:"purple",l:"Content & Comms",items:["Q2 newsletter published","Graduation story + 6-month retrospective post · volunteer spotlight #5"],kpi:"KPI: 2 newsletters sent · Content cadence complete"},
+      {c:"green",l:"LMS",items:["LMS Lead presents status report — wherever build stands","If live: completion data vs baseline shared","Phase 2 decision documented — Cohort #3 and beyond"],kpi:"KPI: Status report delivered · Phase 2 decision made"}
+    ]
+  }
+};
+
+function showSection(id, el) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+  const det = document.getElementById('month-detail');
+  if(det) { det.classList.remove('visible'); }
+  document.querySelectorAll('.month-card').forEach(c=>c.classList.remove('selected'));
+}
+
+function showMonth(n) {
+  const d = monthData[n];
+  const det = document.getElementById('month-detail');
+  document.querySelectorAll('.month-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('mc'+n).classList.add('selected');
+  det.innerHTML = `
+    <div class="detail-header">
+      <h2>${d.title}</h2>
+      <div class="theme-pill">${d.theme.split('.')[0]}</div>
+    </div>
+    <div class="detail-capacity-note">⚡ ${d.capacity}</div>
+    <div class="pillars-grid">
+      ${d.pillars.map(p=>`
+        <div class="pillar-block">
+          <div class="pillar-head ${p.c}">● ${p.l}</div>
+          <div class="pillar-body">
+            <ul>${p.items.map(i=>`<li>${i}</li>`).join('')}</ul>
+            <div class="kpi">📊 ${p.kpi}</div>
+            ${p.unlock ? `<div class="unlock-note">${p.unlock}</div>` : ''}
+          </div>
+        </div>`).join('')}
+    </div>`;
+  det.classList.add('visible');
+  det.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+</script>
+</body>
+</html>
