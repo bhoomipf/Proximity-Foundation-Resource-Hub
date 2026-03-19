@@ -18,12 +18,16 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
     body {
       font-family: 'Gilroy', 'Helvetica Neue', Arial, sans-serif;
       font-weight: 500;
       background: #f5f6f8;
       color: #1a1a2e;
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       flex-direction: column;
     }
@@ -32,12 +36,13 @@
     header {
       background: #ffffff;
       border-bottom: 1px solid #e2e5ea;
-      padding: 20px 48px;
+      padding: 12px 48px;
       display: flex;
       align-items: center;
+      flex-shrink: 0;
     }
     header img {
-      height: 52px;
+      height: 40px;
       width: auto;
     }
 
@@ -45,45 +50,50 @@
     .hero {
       background: linear-gradient(135deg, #0d1b3e 0%, #1a3272 60%, #2a4db5 100%);
       color: #fff;
-      padding: 72px 48px 60px;
+      padding: 28px 48px 24px;
       text-align: center;
+      flex-shrink: 0;
     }
     .hero h1 {
       font-weight: 800;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
       letter-spacing: -0.5px;
       line-height: 1.2;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
     .hero h1 span { color: #4d7cff; }
     .hero p {
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       opacity: 0.85;
       max-width: 560px;
       margin: 0 auto;
-      line-height: 1.7;
+      line-height: 1.5;
     }
 
     /* CARDS SECTION */
     .section {
-      padding: 60px 48px;
-      max-width: 1100px;
+      padding: 24px 48px;
+      max-width: 1200px;
       margin: 0 auto;
       width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     .section-label {
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       font-weight: 800;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: #4d7cff;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     }
     .section-title {
-      font-size: 1.5rem;
+      font-size: 1.1rem;
       font-weight: 800;
       color: #0d1b3e;
-      margin-bottom: 36px;
+      margin-bottom: 16px;
     }
 
     .cards {
@@ -100,9 +110,9 @@
 
     .card {
       background: #ffffff;
-      border-radius: 16px;
+      border-radius: 14px;
       border: 1px solid #e2e5ea;
-      padding: 36px 32px 32px;
+      padding: 20px 22px 18px;
       display: flex;
       flex-direction: column;
       text-decoration: none;
@@ -128,14 +138,14 @@
     .card:hover::before { opacity: 1; }
 
     .card-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 12px;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
-      font-size: 24px;
+      margin-bottom: 12px;
+      font-size: 18px;
     }
     .card-icon.blue { background: #eef2ff; }
     .card-icon.navy { background: #e8edf7; }
@@ -174,20 +184,20 @@
       margin-bottom: 8px;
     }
     .card h2 {
-      font-size: 1.2rem;
+      font-size: 0.98rem;
       font-weight: 800;
       color: #0d1b3e;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       line-height: 1.3;
     }
     .card p {
-      font-size: 0.93rem;
+      font-size: 0.82rem;
       color: #4a5568;
-      line-height: 1.7;
+      line-height: 1.6;
       flex: 1;
     }
     .card-cta {
-      margin-top: 24px;
+      margin-top: 14px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -204,19 +214,20 @@
 
     /* FOOTER */
     footer {
-      margin-top: auto;
       background: #0d1b3e;
       color: rgba(255,255,255,0.5);
       text-align: center;
-      padding: 24px 48px;
-      font-size: 0.82rem;
+      padding: 12px 48px;
+      font-size: 0.78rem;
+      flex-shrink: 0;
     }
     footer strong { color: rgba(255,255,255,0.8); }
 
     @media (max-width: 600px) {
-      header { padding: 16px 24px; }
-      .hero { padding: 48px 24px 40px; }
-      .section { padding: 40px 24px; }
+      html, body { overflow: auto; height: auto; }
+      header { padding: 12px 24px; }
+      .hero { padding: 20px 24px; }
+      .section { padding: 20px 24px; flex: unset; }
     }
   </style>
 </head>
