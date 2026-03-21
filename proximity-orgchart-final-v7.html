@@ -6,7 +6,9 @@
 <title>Proximity Foundation – Org Chart</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: #EEF2FF; padding: 30px 20px 80px; }
+  html { overflow-y: scroll; scrollbar-width: none; -ms-overflow-style: none; }
+html::-webkit-scrollbar { display: none; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #EEF2FF; padding: 30px 20px 80px; }
   h1 { text-align:center; color:#1E3A5F; font-size:21px; margin-bottom:6px; font-weight:800; }
   .subtitle { text-align:center; color:#64748B; font-size:12px; margin-bottom:24px; }
   .legend { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:36px; }
@@ -45,7 +47,7 @@
   .child-col { display:flex; flex-direction:column; align-items:center; flex-shrink:0; }
 
   /* MODAL */
-  .overlay { display:none; position:fixed; inset:0; background:rgba(15,23,42,0.6); backdrop-filter:blur(4px); z-index:1000; align-items:center; justify-content:center; padding:20px; }
+  .overlay { display:none; position:fixed; inset:0; background:rgba(15,23,42,0.6); backdrop-filter:blur(4px); z-index:10000; align-items:center; justify-content:center; padding:20px; }
   .overlay.open { display:flex; }
   .modal { background:white; border-radius:20px; max-width:600px; width:100%; max-height:92vh; overflow-y:auto; box-shadow:0 30px 70px rgba(0,0,0,0.25); animation:popIn .2s ease; }
   @keyframes popIn { from{transform:scale(0.92);opacity:0;} to{transform:scale(1);opacity:1;} }
