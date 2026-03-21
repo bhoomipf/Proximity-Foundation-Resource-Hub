@@ -137,7 +137,7 @@ footer strong{color:rgba(255,255,255,0.8);}
       <div class="ch"><div class="ct">20 CCI consolidated budget</div><div class="cs">By budget line</div></div>
       <div class="cb">
         <div class="cw" style="height:200px;"><canvas id="fd3"></canvas></div>
-        <div class="hl-box"><div class="hlb-label">Infrastructure cost per child (one-time)</div><div class="hlb-val">₹48,660</div></div>
+        <div class="hl-box"><div class="hlb-label">Infrastructure cost per child (hardware + internet, Year 1)</div><div class="hlb-val">₹16,220</div></div>
       </div>
     </div>
     <div class="card">
@@ -150,7 +150,7 @@ footer strong{color:rgba(255,255,255,0.8);}
           <tr><td>Batches per CCI / year</td><td class="amt">3</td></tr>
           <tr><td>Children reached / year</td><td class="amt">300+</td></tr>
           <tr><td>All-in cost per child</td><td class="amt">₹22,680</td></tr>
-          <tr><td>Infra cost per child</td><td class="amt">₹48,660</td></tr>
+          <tr><td>Infra cost per child (Year 1)</td><td class="amt">₹16,220</td></tr>
           <tr><td>Ops Manager salary</td><td class="amt">₹12,00,000</td></tr>
           <tr class="tr"><td>Total programme budget</td><td class="amt">₹68,04,000</td></tr>
         </table>
@@ -161,7 +161,7 @@ footer strong{color:rgba(255,255,255,0.8);}
 <footer><strong>Sunita Jagda's Proximity Foundation</strong> &nbsp;·&nbsp; Internal Use Only &nbsp;·&nbsp; © 2026</footer>
 <script>
 new Chart(document.getElementById('fd1'),{type:'doughnut',data:{labels:['Infrastructure','Staffing','Operations'],datasets:[{data:[4866000,1200000,738000],backgroundColor:['#2563eb','#7c3aed','#16a34a'],borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>' ₹'+(c.raw/100000).toFixed(1)+'L ('+Math.round(c.raw/6804000*100)+'%)'}}}}});
-new Chart(document.getElementById('fd2'),{type:'bar',data:{labels:['Laptops','Router','Headphones','Accessories','Internet','Operations','Staffing'],datasets:[{data:[200000,3500,4000,8200,27600,36900,60000],backgroundColor:['#2563eb','#2563eb','#2563eb','#2563eb','#16a34a','#16a34a','#16a34a'],borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>' ₹'+c.raw.toLocaleString('en-IN')}}},scales:{x:{ticks:{font:{size:9},color:'#94a3b8',maxRotation:35},grid:{display:false}},y:{ticks:{font:{size:9},color:'#94a3b8',callback:(v)=>'₹'+(v/1000)+'K'},grid:{color:'#f1f5f9'}}}}});
+new Chart(document.getElementById('fd2'),{type:'bar',data:{labels:['Laptops ×5','Router ×1','Headphones ×5','Accessories ×5','Internet (annual)','Operations (annual)','Staffing (annual)'],datasets:[{data:[200000,3500,4000,8200,27600,36900,60000],backgroundColor:['#2563eb','#2563eb','#2563eb','#2563eb','#16a34a','#16a34a','#16a34a'],borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>' ₹'+c.raw.toLocaleString('en-IN')}}},scales:{x:{ticks:{font:{size:9},color:'#94a3b8',maxRotation:35},grid:{display:false}},y:{ticks:{font:{size:9},color:'#94a3b8',callback:(v)=>'₹'+(v/1000)+'K'},grid:{color:'#f1f5f9'}}}}});
 new Chart(document.getElementById('fd3'),{type:'bar',data:{labels:['Infrastructure','Internet','Operations','Staffing'],datasets:[{data:[4314000,552000,738000,1200000],backgroundColor:['#2563eb','#3b82f6','#16a34a','#7c3aed'],borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>' ₹'+(c.raw/100000).toFixed(1)+'L'}}},scales:{x:{ticks:{font:{size:9},color:'#94a3b8',maxRotation:0},grid:{display:false}},y:{ticks:{font:{size:9},color:'#94a3b8',callback:(v)=>'₹'+(v/100000).toFixed(0)+'L'},grid:{color:'#f1f5f9'}}}}});
 </script>
 </body>
